@@ -74,7 +74,7 @@
 
         touch .eslintrc.js
 
-    ```json
+    ```js
     module.exports = {
       env: {
         browser: true,
@@ -111,7 +111,7 @@
 
         touch .prettierrc.js
 
-    ```json
+    ```js
     module.exports = {
       semi: true,
       trailingComma: 'all',
