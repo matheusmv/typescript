@@ -1,6 +1,6 @@
 # typescript
 TypeScript studies
- - [ ] Basics
+ - [x] Basics
  - [ ] Types
  - [ ] Classes & Interfaces
  - [ ] Advanced Types
