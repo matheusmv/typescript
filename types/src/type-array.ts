@@ -15,3 +15,11 @@ function allStringsToUpperCase(...words: string[]): Array<string> {
 }
 
 console.log(allStringsToUpperCase('one', 'two', 'three', 'four', 'five'));
+
+const vowels: readonly string[] = ['a', 'e', 'i', 'o', 'u'];
+
+console.log(vowels);
+
+const words: ReadonlyArray<string> = ['blue', 'orange', 'car', 'bike'];
+
+console.log(words);
