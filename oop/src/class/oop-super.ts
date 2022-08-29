@@ -1,7 +1,7 @@
 export class Metadata {
   private readonly createdAt: Date = new Date();
 
-  constructor(private id: number) {}
+  constructor(protected id: number) {}
 
   getId(): number {
     return this.id;
@@ -27,7 +27,7 @@ export class User extends Metadata {
   }
 
   toString(): string {
-    return `id: ${super.getId()}\nusername: ${this.username}\npassword: ${
+    return `id: ${this.id}\nusername: ${this.username}\npassword: ${
       this.password
     }\nemail: ${this.email}\ncreated: ${super.getCreatedAt()}`;
   }
