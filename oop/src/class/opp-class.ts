@@ -14,8 +14,8 @@ export class Company {
     this.employees.push(employee);
   }
 
-  addEmployees(...employee: Employee[]): void {
-    this.employees.push(...employee);
+  addEmployees(...employees: Employee[]): void {
+    this.employees.push(...employees);
   }
 
   displayEmployees(): void {
