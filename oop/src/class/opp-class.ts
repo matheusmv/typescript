@@ -10,8 +10,12 @@ export class Company {
     this.cnpj = cnpj;
   }
 
-  addEmployee(employee: Employee): void {
+  set Employee(employee: Employee) {
     this.employees.push(employee);
+  }
+
+  addEmployees(...employee: Employee[]): void {
+    this.employees.push(...employee);
   }
 
   displayEmployees(): void {
@@ -19,10 +23,10 @@ export class Company {
       const template = 'id: %d\nname: %s %s\ncreated: %s\n';
       console.log(
         template,
-        employee.getId(),
-        employee.getFirstName(),
-        employee.getLastName(),
-        employee.getCreatedAt(),
+        employee.Id,
+        employee.FirstName,
+        employee.LastName,
+        employee.CreatedAt,
       );
     });
   }
@@ -37,31 +41,31 @@ export class Employee {
     private lastName: string,
   ) {}
 
-  getId(): number {
+  get Id(): number {
     return this.id;
   }
 
-  setId(id: number): void {
+  set Id(id: number) {
     this.id = id;
   }
 
-  getFirstName(): string {
+  get FirstName(): string {
     return this.firstName;
   }
 
-  setFirstName(firstName: string): void {
+  set FirstName(firstName: string) {
     this.firstName = firstName;
   }
 
-  getLastName(): string {
+  get LastName(): string {
     return this.lastName;
   }
 
-  setLastName(lastName: string): void {
+  set LastName(lastName: string) {
     this.lastName = lastName;
   }
 
-  getCreatedAt(): string {
+  get CreatedAt(): string {
     return this.createdAt.toUTCString();
   }
 }
@@ -72,8 +76,7 @@ const mary = new Employee(3, 'Mary', 'Jane');
 
 const companyA = new Company('company A', '11111-1111', '11.111.111/0001-11');
 
-companyA.addEmployee(jhon);
-companyA.addEmployee(alex);
-companyA.addEmployee(mary);
+companyA.Employee = jhon;
+companyA.addEmployees(alex, mary);
 
 companyA.displayEmployees();
