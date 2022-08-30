@@ -46,10 +46,10 @@ export class MySQLImpl extends DB {
   }
 
   findById(id: number): unknown {
-    this.connect();
-    const result = `Executing: SELECT * FROM users WHERE id = ${id};`;
-    this.close();
-    return result;
+    console.log(this.connect());
+    console.log(`Executing: SELECT * FROM users WHERE id = ${id};`);
+    console.log(this.close());
+    return '';
   }
 }
 
@@ -77,10 +77,10 @@ export class MongoDBImpl extends DB {
   }
 
   findById(id: number): unknown {
-    this.connect();
-    const result = `Executing: db.users.find({_id: ${id}});`;
-    this.close();
-    return result;
+    console.log(this.connect());
+    console.log(`Executing: db.users.find({_id: ${id}});`);
+    console.log(this.close());
+    return '';
   }
 }
 
@@ -92,5 +92,5 @@ const userServiceMongo = new UserService(
   new MongoDBImpl('admin', 'password', 'company', 'localhost', 27017),
 );
 
-console.log(userServiceMysql.findUserById(1));
-console.log(userServiceMongo.findUserById(1));
+userServiceMysql.findUserById(1);
+userServiceMongo.findUserById(1);
