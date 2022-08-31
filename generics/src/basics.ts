@@ -1,4 +1,6 @@
-function filter<T>(array: Array<T>, callback: (value: T) => boolean): Array<T> {
+type FilterCallback<T> = (value: T) => boolean;
+
+function filter<T>(array: Array<T>, callback: FilterCallback<T>): Array<T> {
   const newArray: Array<T> = [];
 
   for (let i = 0; i < array.length; i++) {
@@ -10,7 +12,9 @@ function filter<T>(array: Array<T>, callback: (value: T) => boolean): Array<T> {
   return newArray;
 }
 
-function map<T>(array: Array<T>, callback: (value: T) => T): Array<T> {
+type MapCallback<T> = (value: T) => T;
+
+function map<T>(array: Array<T>, callback: MapCallback<T>): Array<T> {
   const newArray: Array<T> = [];
 
   for (let i = 0; i < array.length; i++) {
@@ -20,9 +24,11 @@ function map<T>(array: Array<T>, callback: (value: T) => T): Array<T> {
   return newArray;
 }
 
+type ReduceCallback<T> = (acc: T, value: T) => T;
+
 function reduce<T>(
   array: Array<T>,
-  callback: (acc: T, value: T) => T,
+  callback: ReduceCallback<T>,
   initValue: T,
 ): T {
   let acc: T = initValue;
