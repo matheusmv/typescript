@@ -2,7 +2,7 @@
 TypeScript studies
  - [x] Basics
  - [x] Types
- - [ ] Classes & Interfaces
+ - [x] Classes & Interfaces
  - [ ] Advanced Types
  - [ ] Generics
  - [ ] Decorators
