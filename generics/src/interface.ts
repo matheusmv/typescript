@@ -1,8 +1,8 @@
 export interface Comparable<T> {
-  compare(object: T): boolean;
+  compareTo(object: T): number;
 }
 
-export interface Repository<K, T extends Comparable<T>> {
+export interface IRepository<K, T extends Comparable<T>> {
   findAll(): T[];
   findById(id: K): T | null;
   save(object: T): void;
@@ -13,18 +13,46 @@ export interface Repository<K, T extends Comparable<T>> {
 
 export class User implements Comparable<User> {
   constructor(
-    public id: number | null,
+    public id: number,
     public username: string | null,
     public password: string | null,
     public email: string | null,
   ) {}
 
-  compare(object: User): boolean {
-    return this?.id === object?.id;
+  compareTo(object: User): number {
+    return this.id - object.id;
   }
 }
 
-export class UserRepository implements Repository<number, User> {
+export class Service<K, T extends Comparable<T>> {
+  constructor(private repository: IRepository<K, T>) {}
+
+  findAllUsers(): T[] {
+    return this.repository.findAll();
+  }
+
+  findUserById(id: K): T | null {
+    return this.repository.findById(id);
+  }
+
+  createUser(object: T): void {
+    this.repository.save(object);
+  }
+
+  createUsers(...objects: T[]): void {
+    this.repository.saveAll(...objects);
+  }
+
+  updateUser(id: K, object: T): void {
+    this.repository.update(id, object);
+  }
+
+  deleteUserById(id: K): void {
+    this.repository.deleteById(id);
+  }
+}
+
+export class UserRepository implements IRepository<number, User> {
   private db: User[] = [];
 
   findAll(): User[] {
@@ -58,35 +86,7 @@ export class UserRepository implements Repository<number, User> {
   }
 }
 
-export class UserService {
-  constructor(private repository: Repository<number, User>) {}
-
-  findAllUsers(): User[] {
-    return this.repository.findAll();
-  }
-
-  findUserById(id: number): User | null {
-    return this.repository.findById(id);
-  }
-
-  createUser(user: User): void {
-    this.repository.save(user);
-  }
-
-  createUsers(...users: User[]): void {
-    this.repository.saveAll(...users);
-  }
-
-  updateUser(id: number, user: User): void {
-    this.repository.update(id, user);
-  }
-
-  deleteUserById(id: number): void {
-    this.repository.deleteById(id);
-  }
-}
-
-const userService = new UserService(new UserRepository());
+const userService = new Service(new UserRepository());
 
 userService.createUsers(
   new User(1, 'jhon', '12345', 'jhon@email.com'),
@@ -96,7 +96,7 @@ userService.createUsers(
 );
 
 const users = userService.findAllUsers();
-console.log(users);
+console.log(users.sort((a, b) => -a.compareTo(b)));
 
 let mary = userService.findUserById(3) as User;
 mary.password = '1234567';
