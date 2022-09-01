@@ -4,7 +4,7 @@ TypeScript studies
  - [x] Types
  - [x] Classes & Interfaces
  - [x] Advanced Types
- - [ ] Generics
+ - [x] Generics
  - [ ] Decorators
  - [ ] Namespaces & Modules
  - [ ] SOLID with TypeScript
