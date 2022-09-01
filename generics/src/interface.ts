@@ -7,52 +7,24 @@ export interface IRepository<K, T extends Comparable<T>> {
   findById(id: K): T | null;
   save(object: T): void;
   saveAll(...objects: T[]): void;
-  update(id: K, object: T): void;
+  update(id: K, callback: (object: T) => T): void;
   deleteById(id: K): void;
 }
 
 export class User implements Comparable<User> {
   constructor(
-    public id: number,
+    public id: number | null,
     public username: string | null,
     public password: string | null,
     public email: string | null,
   ) {}
 
   compareTo(object: User): number {
-    return this.id - object.id;
+    return (this?.id ?? 0) - (object?.id ?? 0);
   }
 }
 
-export class Service<K, T extends Comparable<T>> {
-  constructor(private repository: IRepository<K, T>) {}
-
-  findAllUsers(): T[] {
-    return this.repository.findAll();
-  }
-
-  findUserById(id: K): T | null {
-    return this.repository.findById(id);
-  }
-
-  createUser(object: T): void {
-    this.repository.save(object);
-  }
-
-  createUsers(...objects: T[]): void {
-    this.repository.saveAll(...objects);
-  }
-
-  updateUser(id: K, object: T): void {
-    this.repository.update(id, object);
-  }
-
-  deleteUserById(id: K): void {
-    this.repository.deleteById(id);
-  }
-}
-
-export class UserRepository implements IRepository<number, User> {
+export class UserMemoryRepository implements IRepository<number, User> {
   private db: User[] = [];
 
   findAll(): User[] {
@@ -63,21 +35,19 @@ export class UserRepository implements IRepository<number, User> {
     return this.db.find((user) => user.id === id) ?? null;
   }
 
-  save(object: User): void {
-    this.db.push(object);
+  save(user: User): void {
+    this.db.push(user);
   }
 
-  saveAll(...objects: User[]): void {
-    this.db.push(...objects);
+  saveAll(...users: User[]): void {
+    this.db.push(...users);
   }
 
-  update(id: number, object: User): void {
-    const user = this.findById(id);
+  update(id: number, callback: (user: User) => User): void {
+    let user = this.findById(id);
 
     if (user) {
-      user.username = object?.username ?? user.username;
-      user.password = object?.password ?? user.password;
-      user.email = object?.email ?? user.email;
+      user = callback(user);
     }
   }
 
@@ -86,7 +56,41 @@ export class UserRepository implements IRepository<number, User> {
   }
 }
 
-const userService = new Service(new UserRepository());
+export class UserService {
+  constructor(private repository: IRepository<number, User>) {}
+
+  findAllUsers(): User[] {
+    return this.repository.findAll();
+  }
+
+  findUserById(id: number): User | null {
+    return this.repository.findById(id);
+  }
+
+  createUser(user: User): void {
+    this.repository.save(user);
+  }
+
+  createUsers(...users: User[]): void {
+    this.repository.saveAll(...users);
+  }
+
+  updateUser(id: number, userDetails: User): void {
+    this.repository.update(id, (user) => {
+      user.username = userDetails?.username ?? user.username;
+      user.password = userDetails?.password ?? user.password;
+      user.email = userDetails?.email ?? user.email;
+
+      return user;
+    });
+  }
+
+  deleteUserById(id: number): void {
+    this.repository.deleteById(id);
+  }
+}
+
+const userService = new UserService(new UserMemoryRepository());
 
 userService.createUsers(
   new User(1, 'jhon', '12345', 'jhon@email.com'),
