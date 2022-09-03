@@ -8,5 +8,5 @@ TypeScript studies
  - [x] Decorators
  - [x] Namespaces & Modules
  - [x] SOLID with TypeScript
- - [ ] Tests
+ - [x] Tests
  - [ ] Design Patterns
