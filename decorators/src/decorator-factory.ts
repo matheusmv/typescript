@@ -1,5 +1,7 @@
+type Constructor = new (...args: any[]) => any;
+
 export function whitValues(props?: Record<string, unknown>) {
-  return function <T extends new (...args: any[]) => any>(target: T): T {
+  return function (target: Constructor): Constructor {
     return class extends target {
       constructor(...args: any[]) {
         super(...args);
