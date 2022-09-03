@@ -1,4 +1,4 @@
-export function logMetadata(
+export function logMethod(
   classPrototype: any,
   methodName: string,
   descriptor: PropertyDescriptor,
@@ -16,7 +16,7 @@ export class User {
     public email?: string,
   ) {}
 
-  @logMetadata
+  @logMethod
   toString(): string {
     return `User [id: ${this.id}, username: ${this.username}, password: ${this.password}, email: ${this.email}]`;
   }
