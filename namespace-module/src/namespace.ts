@@ -23,5 +23,3 @@ const jhon = new MyApp.User(1, 'jhon', '12345');
 console.log(jhon);
 
 console.log(MyApp.Operations.sum(2, 2));
-
-export default 1;
