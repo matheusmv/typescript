@@ -6,7 +6,7 @@ TypeScript studies
  - [x] Advanced Types
  - [x] Generics
  - [x] Decorators
- - [ ] Namespaces & Modules
+ - [x] Namespaces & Modules
  - [ ] SOLID with TypeScript
  - [ ] Tests
  - [ ] Design Patterns
