@@ -46,3 +46,7 @@
  - watch mode
 
         npm run test:silent
+
+## Coverage report
+
+    npx jest --coverage
