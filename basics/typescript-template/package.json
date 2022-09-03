@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "matheusmv",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
     "eslint": "^8.22.0",

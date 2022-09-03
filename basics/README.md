@@ -13,7 +13,7 @@
 
         mkdir <project-name> && cd <project-name>
         npm init -y
-        npm i -d typescript
+        npm i -D typescript
 
 ## tsconfig
 
@@ -58,7 +58,7 @@
 
  - installation (dev)
 
-        npm i -d ts-node
+        npm i -D ts-node
 
  - run
 
@@ -68,7 +68,7 @@
 
  - installation
 
-        npm i -d eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
+        npm i -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
 
  - config
 
@@ -105,7 +105,7 @@
 
  - installation
 
-        npm i -d prettier eslint-config-prettier eslint-plugin-prettier
+        npm i -D prettier eslint-config-prettier eslint-plugin-prettier
 
  - config
 
