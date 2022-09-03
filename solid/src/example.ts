@@ -1,15 +1,15 @@
 export type CartItem = { name: string; price: number };
-export type OderStatus = 'open' | 'closed';
+export type OrderStatus = 'open' | 'closed';
 
 export class ShoppingCart {
   private readonly _items: CartItem[] = [];
-  private _orderStatus: OderStatus = 'open';
+  private _orderStatus: OrderStatus = 'open';
 
   get items(): Readonly<CartItem[]> {
     return this._items;
   }
 
-  get orderStatus(): OderStatus {
+  get orderStatus(): OrderStatus {
     return this._orderStatus;
   }
 
