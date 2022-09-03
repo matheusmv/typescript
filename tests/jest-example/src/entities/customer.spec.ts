@@ -12,18 +12,18 @@ const createIndividualCustomer = (
 
 describe('IndividualCustomer', () => {
   it('should have firstName, lastName and cpf', () => {
-    const stu = createIndividualCustomer('jhon', 'doe', '111.111.111-11');
+    const sut = createIndividualCustomer('jhon', 'doe', '111.111.111-11');
 
-    expect(stu).toHaveProperty('firstName', 'jhon');
-    expect(stu).toHaveProperty('lastName', 'doe');
-    expect(stu).toHaveProperty('cpf', '111.111.111-11');
+    expect(sut).toHaveProperty('firstName', 'jhon');
+    expect(sut).toHaveProperty('lastName', 'doe');
+    expect(sut).toHaveProperty('cpf', '111.111.111-11');
   });
 
   it('should have methods getName and getId for individual customers', () => {
-    const stu = createIndividualCustomer('jhon', 'doe', '111.111.111-11');
+    const sut = createIndividualCustomer('jhon', 'doe', '111.111.111-11');
 
-    expect(stu.getName()).toEqual('jhon doe');
-    expect(stu.getId()).toEqual('111.111.111-11');
+    expect(sut.getName()).toEqual('jhon doe');
+    expect(sut.getId()).toEqual('111.111.111-11');
   });
 });
 
@@ -33,16 +33,16 @@ const createEnterpriseCustomer = (name: string, cnpj: string) => {
 
 describe('EnterpriseCustomer', () => {
   it('should have name and cnpj', () => {
-    const stu = createEnterpriseCustomer('company 1', '11.111.111/1111-11');
+    const sut = createEnterpriseCustomer('company 1', '11.111.111/1111-11');
 
-    expect(stu).toHaveProperty('name', 'company 1');
-    expect(stu).toHaveProperty('cnpj', '11.111.111/1111-11');
+    expect(sut).toHaveProperty('name', 'company 1');
+    expect(sut).toHaveProperty('cnpj', '11.111.111/1111-11');
   });
 
   it('should have methods getName and getId for enterprise customers', () => {
-    const stu = createEnterpriseCustomer('company 1', '11.111.111/1111-11');
+    const sut = createEnterpriseCustomer('company 1', '11.111.111/1111-11');
 
-    expect(stu.getName()).toEqual('company 1');
-    expect(stu.getId()).toEqual('11.111.111/1111-11');
+    expect(sut.getName()).toEqual('company 1');
+    expect(sut.getId()).toEqual('11.111.111/1111-11');
   });
 });
