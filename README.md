@@ -7,6 +7,6 @@ TypeScript studies
  - [x] Generics
  - [x] Decorators
  - [x] Namespaces & Modules
- - [ ] SOLID with TypeScript
+ - [x] SOLID with TypeScript
  - [ ] Tests
  - [ ] Design Patterns
