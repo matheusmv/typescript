@@ -6,17 +6,17 @@
 
  - Project (dev)
 
-       npm i -D jest ts-jest @types/jest
+        npm i -D jest ts-jest @types/jest
 
 ## Setup
 
  - jest
 
-       npx jest --init
+        npx jest --init
 
  - ts-jest
 
-       npx ts-jest config:init
+        npx ts-jest config:init
 
 ## Running
 
@@ -24,18 +24,25 @@
 
  - how to create tests?
 
-       <file-name>.test.ts (integration)
+        <file-name>.test.ts (integration)
 
-       <file-name>.spec.ts (unit)
+        <file-name>.spec.ts (unit)
 
 ## Config package.json
 
 ```js
 {
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:silent": "npx jest --watchAll --silent --noStackTrace"
   }
 }
 ```
 
-      npm run test
+ - normal
+
+        npm run test
+
+ - watch mode
+
+        npm run test:silent

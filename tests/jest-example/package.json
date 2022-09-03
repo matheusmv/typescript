@@ -4,7 +4,8 @@
   "description": "basic typescript config",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:silent": "npx jest --watchAll --silent --noStackTrace"
   },
   "keywords": [],
   "author": "matheusmv",
